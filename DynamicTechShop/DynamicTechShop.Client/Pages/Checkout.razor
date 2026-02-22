@@ -21,7 +21,7 @@ else
     private async Task PlaceOrder()
     {
         // In a real app, you would send the cart items to the server to create an order.
-        var response = await Http.PostAsync("api/orders", null);
+        var response = await Http.PostAsync("api/Orders", null);
         response.EnsureSuccessStatusCode(); // Throw if not successful.
 
         await CartService.ClearAsync();// Clear the cart after placing the order.
