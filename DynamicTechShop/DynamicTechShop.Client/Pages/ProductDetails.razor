@@ -1,7 +1,49 @@
 ﻿@page "/products/{Id:int}"
+@using DynamicTechShop.Shared.Models
+@inject DynamicTechShop.Client.Services.ProductService ProductService
+@inject DynamicTechShop.Client.Services.CartService CartService
+@inject NavigationManager Nav
 
-<h3>ProductDetails</h3>
+@if (product is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="card">
+        <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name"
+             style="max-height:420px; object-fit:cover;" />
+        <div class="card-body">
+            <h3>@product.Name</h3>
+            <div class="text-muted">@product.Category</div>
+            <p class="mt-3">@product.Description</p>
+            <div class="fw-bold">@product.Price.ToString("0.00")</div>
+
+            <div class="mt-3 d-flex gap-2">
+                <button class="btn btn-primary" @onclick="AddToCart">Add to cart</button>
+                <button class="btn btn-outline-secondary" @onclick='() => Nav.NavigateTo("/products")'>Back</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+
 
 @code {
+    [Parameter] public int Id { get; set; }
+    private ProductModel? product;
 
+    // Load the product details when the component parameters are set (when Id changes).
+    protected override async Task OnParametersSetAsync()
+    {
+        product = await ProductService.GetByIdAsync(Id);
+    }
+
+    private async Task AddToCart()
+    {
+        if (product is null) return; // If product is not loaded, do nothing.
+        await CartService.AddAsync(product);
+        Nav.NavigateTo("/cart");
+    }
 }
