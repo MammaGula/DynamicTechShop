@@ -10,11 +10,18 @@ namespace DynamicTechShop.Client.Services;
 public class CartService
 {
     private const string StorageKey = "dynamictechshop_cart";
-    private readonly ILocalStorageService _localStorage;
+    private readonly ILocalStorageService? _localStorage;
 
 
     // The start list of items is empty, but it will be loaded from local storage when InitializeAsync is called.
     public List<ProductModel> Items { get; private set; } = new();
+
+    // Parameterless ctor for server-side prerendering where ILocalStorageService is not available.
+    // When _localStorage is null, persistence calls become no-ops so the service still works during prerender.
+    public CartService()
+    {
+        _localStorage = null;
+    }
 
     public CartService(ILocalStorageService localStorage)
     {
@@ -39,7 +46,15 @@ public class CartService
 
 
     // Keep items in local storage up to date whenever they are added or removed from the cart
-    private ValueTask SaveAsync() => _localStorage.SetItemAsync(StorageKey, Items);
+    private ValueTask SaveAsync()
+    {
+        if (_localStorage is null)
+        {
+            return ValueTask.CompletedTask;
+        }
+
+        return _localStorage.SetItemAsync(StorageKey, Items);
+    }
 
 
     // Add a product to the cart and save the updated cart to local storage

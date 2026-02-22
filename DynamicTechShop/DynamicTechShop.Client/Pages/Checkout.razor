@@ -1,0 +1,30 @@
+﻿@page "/checkout"
+@inject HttpClient Http
+@inject DynamicTechShop.Client.Services.CartService CartService
+@inject NavigationManager Nav
+
+<h3>Checkout</h3>
+
+@* If No items in cart, show message. Otherwise, show total and place order button. *@
+
+@if (CartService.Items.Count == 0)
+{
+    <p>No items to checkout.</p>
+}
+else
+{
+    <p>Total: <b>@CartService.Total.ToString("0.00")</b></p>
+    <button class="btn btn-primary" @onclick="PlaceOrder">Place order</button>
+}
+
+@code {
+    private async Task PlaceOrder()
+    {
+        // In a real app, you would send the cart items to the server to create an order.
+        var response = await Http.PostAsync("api/orders", null);
+        response.EnsureSuccessStatusCode(); // Throw if not successful.
+
+        await CartService.ClearAsync();// Clear the cart after placing the order.
+        Nav.NavigateTo("/confirmation");
+    }
+}
