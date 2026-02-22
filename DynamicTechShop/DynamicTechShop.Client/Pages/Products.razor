@@ -1,0 +1,73 @@
+﻿@page "/products"
+@using DynamicTechShop.Shared.Models
+@inject DynamicTechShop.Client.Services.ProductService ProductService
+@inject NavigationManager Nav
+
+<h3>Products</h3>
+
+<input class="form-control" placeholder="Search..."
+       @bind="searchText" @bind:event="oninput" /> 
+       @* Specify that the searchText should be updated when an oninput event occurs (each time the user types). *@
+
+<div class="row mt-3">
+    @foreach (var p in GetFilteredProducts())
+    {
+        <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="card h-100" style="cursor:pointer" @onclick="() => OpenProduct(p.Id)">
+
+                <img src="@p.ImageUrl" class="card-img-top" alt="@p.Name"
+                     style="height:200px; object-fit:cover;" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@p.Name</h5>
+                    <div class="text-muted">@p.Category</div>
+                    <div class="fw-bold mt-2">@p.Price.ToString("0.00")</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+@code {
+
+
+    private List<ProductModel> products = new();
+    private string searchText = "";
+
+
+    // Load products when the component initializes.
+    protected override async Task OnInitializedAsync()
+    {
+        products = await ProductService.GetProductsAsync();
+    }
+
+
+    // Return products filtered by the current search text.
+    // Keeps the UI code simple by moving the logic here.
+    private IEnumerable<ProductModel> GetFilteredProducts()
+    {
+        // If search text is empty, return all products(All products returns at start)
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            return products;
+        }
+
+        // Filter products by name or category, ignoring case.
+        var query = searchText.Trim();
+        return products.Where(p =>
+            p.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+            p.Category.Contains(query, StringComparison.OrdinalIgnoreCase));
+    }
+
+
+    // Navigate to the product details page when a product card is clicked.
+    private void OpenProduct(int id)
+    {
+        Nav.NavigateTo($"/products/{id}");
+    }
+}

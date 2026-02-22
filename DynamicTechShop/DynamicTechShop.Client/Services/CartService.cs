@@ -1,5 +1,4 @@
 ﻿using Blazored.LocalStorage;
-using DynamicTechShop.Client.Models;
 using DynamicTechShop.Shared.Models;
 
 namespace DynamicTechShop.Client.Services;
