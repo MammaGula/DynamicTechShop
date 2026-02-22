@@ -23,8 +23,18 @@ public class CartService
 
     public async Task InitializeAsync()
     {
+        //Items = await _localStorage.GetItemAsync<List<ProductModel>>(StorageKey) ?? new();
+
         // Load items from local storage, or initialize with an empty list if not found
-        Items = await _localStorage.GetItemAsync<List<ProductModel>>(StorageKey) ?? new();
+        var saved = await _localStorage.GetItemAsync<List<ProductModel>>(StorageKey);
+        if (saved == null)
+        {
+            Items = new List<ProductModel>();
+        }
+        else
+        {
+            Items = saved;
+        }
     }
 
 
