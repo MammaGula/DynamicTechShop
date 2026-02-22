@@ -1,0 +1,98 @@
+[
+  {
+    "Id": 1,
+    "Name": "UltraBook Pro 13",
+    "Category": "Laptop",
+    "Description": "Slim and lightweight laptop with high performance for everyday tasks.",
+    "ImageUrl": "images/laptop1.jpg",
+    "Price": 899.00
+  },
+  {
+    "Id": 2,
+    "Name": "Gaming Beast X15",
+    "Category": "Laptop",
+    "Description": "High-end gaming laptop with powerful GPU and cooling system.",
+    "ImageUrl": "images/laptop2.jpg",
+    "Price": 1599.00
+  },
+  {
+    "Id": 3,
+    "Name": "WorkMate 14",
+    "Category": "Laptop",
+    "Description": "Reliable business laptop designed for productivity and portability.",
+    "ImageUrl": "images/laptop3.jpg",
+    "Price": 799.00
+  },
+  {
+    "Id": 4,
+    "Name": "Creator Studio 16",
+    "Category": "Laptop",
+    "Description": "Perfect for designers and video editors with color-accurate display.",
+    "ImageUrl": "images/laptop4.jpg",
+    "Price": 1799.00
+  },
+  {
+    "Id": 5,
+    "Name": "StudentBook Air",
+    "Category": "Laptop",
+    "Description": "Affordable and lightweight laptop ideal for students.",
+    "ImageUrl": "images/laptop5.jpg",
+    "Price": 599.00
+  },
+  {
+    "Id": 6,
+    "Name": "PowerMax 17",
+    "Category": "Laptop",
+    "Description": "Large-screen laptop with extreme performance for heavy workloads.",
+    "ImageUrl": "images/laptop6.jpg",
+    "Price": 1899.00
+  },
+  {
+    "Id": 7,
+    "Name": "TravelLite 13",
+    "Category": "Laptop",
+    "Description": "Compact laptop with long battery life for travelers.",
+    "ImageUrl": "images/laptop7.jpg",
+    "Price": 999.00
+  },
+  {
+    "Id": 8,
+    "Name": "Hybrid Flex 14",
+    "Category": "Laptop",
+    "Description": "2-in-1 convertible laptop with touchscreen and stylus support.",
+    "ImageUrl": "images/laptop8.jpg",
+    "Price": 1099.00
+  },
+  {
+    "Id": 9,
+    "Name": "EcoBook Green",
+    "Category": "Laptop",
+    "Description": "Eco-friendly laptop made with sustainable materials.",
+    "ImageUrl": "images/laptop9.jpg",
+    "Price": 899.00
+  },
+  {
+    "Id": 10,
+    "Name": "ProStation 15",
+    "Category": "Laptop",
+    "Description": "Professional workstation laptop for engineers and developers.",
+    "ImageUrl": "images/laptop10.jpg",
+    "Price": 1999.00
+  },
+  {
+    "Id": 11,
+    "Name": "MiniNote 12",
+    "Category": "Laptop",
+    "Description": "Small form-factor laptop perfect for basic tasks and portability.",
+    "ImageUrl": "images/laptop11.jpg",
+    "Price": 499.00
+  },
+  {
+    "Id": 12,
+    "Name": "Ultimate Gaming Titan",
+    "Category": "Laptop",
+    "Description": "Top-tier gaming laptop with cutting-edge hardware.",
+    "ImageUrl": "images/laptop12.jpg",
+    "Price": 2499.00
+  }
+]

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DynamicTechShop/DynamicTechShop.Client/DynamicTechShop.Client.csproj" />
+  <Project Path="DynamicTechShop/DynamicTechShop/DynamicTechShop.csproj" />
+</Solution>
