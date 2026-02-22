@@ -30,7 +30,12 @@ public class CartService
 
     public async Task InitializeAsync()
     {
-        //Items = await _localStorage.GetItemAsync<List<ProductModel>>(StorageKey) ?? new();
+        // If local storage is not available (e.g. during server prerender) just keep the default empty list.
+        if (_localStorage is null)
+        {
+            Items = new List<ProductModel>();
+            return;
+        }
 
         // Load items from local storage, or initialize with an empty list if not found
         var saved = await _localStorage.GetItemAsync<List<ProductModel>>(StorageKey);
